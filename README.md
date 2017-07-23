@@ -4,8 +4,8 @@ Retroactively fix and remediate untagged aws resources using lambda and send sns
 
 # About 
 
-Sometimes your compliance, security or finance team may require you to tag assets in the public cloud. This is great for versioning, knowing which region your asset is located, aggregrating assets to calculate spend, planning security efforts and provind guaditing results. \n
-\n
+Sometimes your compliance, security or finance team may require you to tag assets in the public cloud. This is great for versioning, knowing which region your asset is located, aggregrating assets to calculate spend, planning security efforts and provind guaditing results. <br>
+<br>
 For example, you may want to tag a group of servers with \n
 \n
 Application: MyBigSite.com \n
