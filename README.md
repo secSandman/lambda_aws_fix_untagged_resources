@@ -4,19 +4,24 @@ Retroactively fix and remediate untagged aws resources using lambda and send sns
 
 # About 
 
-Sometimes your compliance, security or finance team may require you to tag assets in the public cloud. This is great for versioning, knowing which region your asset is located, aggregrating assets to calculate spend, planning security efforts and provind guaditing results. <br>
-<br>
-For example, you may want to tag a group of servers with \n
-\n
-Application: MyBigSite.com \n
-Region: East-1 \n
-Environment: Dev \n
-Version: v.01 \n
-\n
+Sometimes your compliance, security or finance team may require you to tag assets in the public cloud. This is great for versioning, knowing which region your asset is located, aggregrating assets to calculate spend, planning security efforts and provind guaditing results. 
+
+For example, you may want to tag a group of servers with
+
+Application: MyBigSite.com 
+
+Region: East-1 
+
+Environment: Dev 
+
+Version: v.01 
+
 Such a simple idea will allow you to aggregate digital assets and calcualte the $ spend on those assets. 
-\n
+
+
 You can also take advantage of this capability to create fine grained access controls to restrict who can make changes to the resources. This is great from a security perspective and even better for preventing accidal outages that can affect sales, project time lines or even avoding costs of your employees unecessarily adding resources that cost real $.
-\n
+
+
 Unfortunately scaling this approach can be hard. If you have thousands of employees and tens or hundreds of accounts then it can be difficult to enforce asset management across all of them. Sure you can enforce a Jenkins build pipeline in production but you will undoubtadly be left with some un accounted inventory.  
 \n
 
