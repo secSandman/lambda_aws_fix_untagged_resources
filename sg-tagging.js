@@ -1,18 +1,49 @@
+    
+// Here is the filter pattern
+
+// {$.eventName = CreateSecurityGroup}
+
+
 var AWS = require('aws-sdk');
+
 AWS.config.update({region: 'us-west-2'});
 
+var zlib = require('zlib');
+
 exports.handler = (event, context, callback) => {
+    
+    
+    var payload = new Buffer(event.awslogs.data, 'base64');
+    zlib.gunzip(payload, function(e, result) {
+        if (e) { 
+            context.fail(e);
+        } else {
+            result = JSON.parse(result.toString('ascii'));
+            // console.log(result.logEvents);
+            
+            arraydata = result.logEvents[0]
+            
+            tojson = JSON.parse(arraydata.message);
+             
+            // console.log(tojson.userIdentity.userName);
+            
+            // console.log(tojson.responseElements.groupId);
+            
+             var owner = tojson.userIdentity.userName;
+    
+             var resourceid = tojson.responseElements.groupId;
+                       
+              // console.log(owner);
+              // console.log(resourceid);            
+    
+        }
     
     // TODO implement
     // console.log('Security Group Created on ');
     // console.log(JSON.stringify(event));
     
-    var owner = event.userIdentity.userName;
-    
-    var resourceid = event.responseElements.groupId;
-    
-    // console.log(owner);
-    // console.log(resourceid);
+    console.log(owner);
+    console.log(resourceid);
     
     var ec2 = new AWS.EC2({apiVersion: '2016-11-15'});
     
@@ -169,58 +200,13 @@ ec2.describeTags(params, function(err, data) {
                         }     
                            
         });
+        
+        
+    });    
     
 }; // end of function 
 
 
-    
-// Here is the filter pattern
-
-// {$.eventName = CreateSecurityGroup}
 
 
-// here is a test cases for testing the event handler 
 
-
-/*
-
-event.responseElements.groupId
-
-{
-    "eventVersion": "1.05",
-    "userIdentity": {
-        "type": "Root",
-        "principalId": "162723788887",
-        "arn": "arn:aws:iam::162723788887:root",
-        "accountId": "162723788887",
-        "accessKeyId": "ASIAIVYNTRKI3QX2M6OQ",
-        "userName": "secsandman2",
-        "sessionContext": {
-            "attributes": {
-                "mfaAuthenticated": "true",
-                "creationDate": "2017-07-20T14:50:17Z"
-            }
-        }
-    },
-    "eventTime": "2017-07-20T16:57:32Z",
-    "eventSource": "ec2.amazonaws.com",
-    "eventName": "CreateSecurityGroup",
-    "awsRegion": "us-west-2",
-    "sourceIPAddress": "69.167.36.26",
-    "userAgent": "console.ec2.amazonaws.com",
-    "requestParameters": {
-        "groupName": "hello",
-        "groupDescription": "hello ",
-        "vpcId": "vpc-931c4df4"
-    },
-    "responseElements": {
-        "_return": true,
-        "groupId": "sg-f3952489"
-    },
-    "requestID": "7d817682-4dda-407f-852c-74a0f3b49a52",
-    "eventID": "0de7de16-417c-45f9-aa0f-ef7e3267cde4",
-    "eventType": "AwsApiCall",
-    "recipientAccountId": "162723788887"
-}
-
-*/
