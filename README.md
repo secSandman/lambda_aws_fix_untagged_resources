@@ -23,7 +23,7 @@ You can also take advantage of this capability to create fine grained access con
 
 
 Unfortunately scaling this approach can be hard. If you have thousands of employees and tens or hundreds of accounts then it can be difficult to enforce asset management across all of them. Sure you can enforce a Jenkins build pipeline in production but you will undoubtadly be left with some un accounted inventory.  
-\n
+
 
 To address this I've written a pretty simple Node.JS lambda script that monitors for new security groups and validated whether they are tagged or not tagged. If the code finds untagged or incorrect tags it then adds a "Owner" and "Environment". 
 
